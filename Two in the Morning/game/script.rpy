@@ -1,33 +1,30 @@
-﻿# The script of the game goes in this file.
-
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-
-define e = Character("Eileen")
-
-
-# The game starts here.
+﻿define e = Character("Eden")
 
 label start:
+    $ init_eden = True
+    $ init_fridge = True
+    $ eden_convo1_comp = False
+    $ show_pencils = False
+    jump scn_room1
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
+label scn_room1:
 
-    scene bg room
+    scene bg room_1
+    call screen room1
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+label eden_convo1:
 
-    show eileen happy
+    $ eden_convo1_comp = True
+    show eden neutral
+    e "placeholder dialogue"
+    $ init_eden = False
+    jump scn_room1
 
-    # These display lines of dialogue.
+label scn_room2:
 
-    e "You've created a new Ren'Py game."
+    scene bg room_2
+    call screen room2
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
-
-    # This ends the game.
+label scn_room3:
 
     return

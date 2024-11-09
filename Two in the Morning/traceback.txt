@@ -1,0 +1,26 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 30, in script
+ScriptError: could not find label 'scn_room3'.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "/Users/esmenadeau/Desktop/renpy-8.2.3-sdk/renpy/bootstrap.py", line 359, in bootstrap
+    renpy.main.main()
+  File "/Users/esmenadeau/Desktop/renpy-8.2.3-sdk/renpy/main.py", line 637, in main
+    run(restart)
+  File "/Users/esmenadeau/Desktop/renpy-8.2.3-sdk/renpy/main.py", line 145, in run
+    renpy.execution.run_context(True)
+  File "/Users/esmenadeau/Desktop/renpy-8.2.3-sdk/renpy/execution.py", line 955, in run_context
+    context.run()
+  File "game/script.rpy", line 30, in script
+  File "/Users/esmenadeau/Desktop/renpy-8.2.3-sdk/renpy/script.py", line 1103, in lookup
+    raise ScriptError("could not find label '%s'." % str(original))
+ScriptError: could not find label 'scn_room3'.
+
+macOS-10.16-x86_64-i386-64bit x86_64
+Ren'Py 8.2.3.24061702
+Two in the Morning 1.0
+Fri Nov  8 12:24:02 2024

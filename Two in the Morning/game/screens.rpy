@@ -4,10 +4,54 @@
 
 init offset = -1
 
+################################################################################
+## Room screens
+################################################################################
+
+screen room1:
+    if init_fridge:
+        imagebutton:
+            pos (602, 563)
+            idle "fridge"
+            hover "fridge_hover"
+            action Show("menu_button_surface")
+    imagebutton:
+        pos (0, 245)
+        idle "door1"
+        hover "door1_hover"
+        if eden_convo1_comp:
+            action Jump("scn_room2")
+        else:
+            action Jump("eden_convo1")
+    if init_eden:
+        imagebutton:
+            pos (867, 503)
+            idle "edensitting1"
+            hover "edensitting1_hover"
+            action Jump("eden_convo1")
+
+screen room2:
+    if show_pencils:
+        imagebutton:
+            pos (1330, 576)
+            idle "penciljar"
+            hover "penciljar_hover"
+            action Show("menu_button_surface")
+    imagebutton:
+        pos (1700, 257)
+        idle "door2"
+        hover "door2_hover"
+        action Jump("scn_room1")
+    imagebutton:
+            pos (0, 169)
+            idle "door3"
+            hover "door3_hover"
+            action Jump("scn_room3")
 
 ################################################################################
 ## Styles
 ################################################################################
+
 
 style default:
     properties gui.text_properties()

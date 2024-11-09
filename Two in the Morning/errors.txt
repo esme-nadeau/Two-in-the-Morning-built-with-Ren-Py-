@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/screens.rpy", line 24: the action keyword argument was not given a value.
+    action jump("scn_room2")
+           ^
+
+Ren'Py Version: Ren'Py 8.2.3.24061702
+Thu Nov  7 16:09:17 2024
