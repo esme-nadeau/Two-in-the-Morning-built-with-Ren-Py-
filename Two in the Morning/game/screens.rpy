@@ -8,13 +8,56 @@ init offset = -1
 ## Room screens
 ################################################################################
 
+screen email1:
+    text "Dear Professor Whitney,":
+        pos(295, 350)
+        color '#51576f'
+        size 30
+screen email2:
+    text "My name is ":
+        pos(295, 430)
+        color '#51576f'
+        size 30
+
+screen email3:
+    text "My name is ":
+        pos (295, 430)
+        color '#51576f'
+        size 30
+    input:
+        value VariableInputValue("username")
+        size 30
+        color '#51576f'
+        length 32
+        xpos 510
+        ypos 430
+    key "K_RETURN" action [Return()]
+    key "K_KP_ENTER" action [Return()]
+screen email4:
+    text "My name is [username]":
+        pos(295, 430)
+        color '#51576f'
+        size 30
+
+screen email5:
+    text "Dear [username], \n\nThanks so much, again. It was really nice to talk \nwith you tonight. Don't worry too much about the \nmidterm, ok? You don't need an exam to tell \nyou what you're worth. You're a good kid. \n\n- Professor Whitney":
+        pos(295, 350)
+        color '#51576f'
+        size 28
+
+screen end_creds:
+    text "Developed by Esmé Nadeau":
+        xalign 0.5
+        yalign 0.5
+        size 50
+
 screen room1:
     if init_fridge:
         imagebutton:
             pos (602, 563)
             idle "fridge"
             hover "fridge_hover"
-            action Show("menu_button_surface")
+            action Jump("fridge_open")
     imagebutton:
         pos (0, 245)
         idle "door1"
@@ -36,17 +79,92 @@ screen room2:
             pos (1330, 576)
             idle "penciljar"
             hover "penciljar_hover"
-            action Show("menu_button_surface")
+            action Jump("pencil_found")
     imagebutton:
         pos (1700, 257)
         idle "door2"
         hover "door2_hover"
         action Jump("scn_room1")
     imagebutton:
-            pos (0, 169)
-            idle "door3"
-            hover "door3_hover"
-            action Jump("scn_room3")
+        pos (0, 169)
+        idle "door3"
+        hover "door3_hover"
+        action Jump("scn_room3")
+
+screen room3:
+    if not seneca_convo_prog:
+        imagebutton:
+            pos (474, 537)
+            idle "senecasitting"
+            hover "senecasitting_hover"
+            if show_pencils:
+                action Jump("get_pencil_mes")
+            elif has_pencil:
+                action Jump("seneca_convo2")
+            else:
+                action Jump("seneca_convo1")
+    imagebutton:
+        pos (0, 309)
+        idle "door4"
+        hover "door4_hover"
+        action Jump("scn_room2")
+    if has_code:
+        imagebutton:
+            pos (1565, 329)
+            idle "door5"
+            hover "door5_hover"
+            action Jump("scn_room4")
+
+screen room4:
+    if not whitney_convo_prog:
+        if whitney_awake:
+            imagebutton:
+                pos (755, 513)
+                idle "whitneysitting"
+                hover "whitneysitting_hover"
+                if init_whitney:
+                    action Jump("whitney_convo1")
+                elif not has_ed:
+                    action Jump("needs_ed")
+                elif whitney_ending:
+                    action Jump("whitney_convo3")
+                else:
+                    action Jump("whitney_convo2")
+        else:
+            imagebutton:
+                pos (764, 544)
+                idle "whitneysleeping"
+                hover "whitneysleeping_hover"
+                if not seneca_ending:
+                    action Jump("whitney_is_asleep")
+                else:
+                    action Jump("get_out")
+    imagebutton:
+        pos (0, 229)
+        idle "door6"
+        hover "door6_hover"
+        action Jump("scn_room3")
+    imagebutton:
+        pos (1489, 211)
+        idle "door7"
+        hover "door7_hover"
+        action Jump("scn_room5")
+
+screen room5:
+    imagebutton:
+        pos (0, 210)
+        idle "door8"
+        hover "door8_hover"
+        action Jump("scn_room4")
+    imagebutton:
+        pos (850, 730)
+        idle "edensitting2"
+        hover "edensitting2_hover"
+        if init_eden2:
+            action Jump("eden_convo2")
+        else:
+            action Jump("eden_convo3")
+
 
 ################################################################################
 ## Styles
@@ -263,7 +381,7 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
-    ypos 405
+    ypos 880
     yanchor 0.5
 
     spacing gui.choice_spacing

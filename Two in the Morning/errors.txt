@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 24: the action keyword argument was not given a value.
-    action jump("scn_room2")
-           ^
+File "game/script.rpy", line 423: expected statement.
+    endings_2
+             ^
 
 Ren'Py Version: Ren'Py 8.2.3.24061702
-Thu Nov  7 16:09:17 2024
+Sun Dec  1 20:18:14 2024
